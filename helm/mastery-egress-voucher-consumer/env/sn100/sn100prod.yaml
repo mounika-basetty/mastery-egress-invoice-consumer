@@ -1,0 +1,29 @@
+replicaCount: 3
+
+namespace: sn100-prod-mastery-egress
+
+kafkaNamespace: sn100-prod-kafka
+
+image:
+    pullPolicy: IfNotPresent
+
+service:
+    environment: 'sn100prod'
+    kafka:
+        brokers: 'mastery-kafka-bootstrap.sn100-prod-kafka.svc:9092'
+        registryEndpoint: 'http://mastery-schemaregistry.sn100-prod-kafka.svc:80/api/ccompat'
+    outboundKafka:
+        topic: 'sn100-prod-vouchers'
+        broker: 'sn100-prod-egress-8h9ejv.servicebus.windows.net:9093'
+    graphQL:
+        endpoint: 'https://graphql.sn100.mastermindtms.com/graphql'
+    idp:
+        audience: 'https://sn100.mastermindtms.com/'
+        tokenEndpoint: 'https://id.sn100prod.mastermindtms.com/auth/realms/sn100.mastermindtms.com/protocol/openid-connect/token'
+    disableSentry: 'false'
+    logging:
+        env: sn100-prod
+        pretty: false
+        level: 'debug'
+    newRelic:
+        labels: Customer:SNI;Environment:Production

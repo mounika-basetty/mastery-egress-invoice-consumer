@@ -1,0 +1,29 @@
+replicaCount: 2
+
+namespace: mastery-demo-mastery-egress
+
+kafkaNamespace: mastery-demo-kafka
+
+image:
+    pullPolicy: IfNotPresent
+
+service:
+    environment: 'internalprod'
+    kafka:
+        brokers: 'mastery-kafka-bootstrap.mastery-demo-kafka.svc:9092'
+        registryEndpoint: 'http://mastery-schemaregistry.mastery-demo-kafka.svc:80/api/ccompat'
+    outboundKafka:
+        topic: 'mastery-demo-vouchers'
+        broker: 'mastery-demo-egress-dwlm80.servicebus.windows.net:9093'
+    graphQL:
+        endpoint: 'https://graphql.demo.masterytms.com/graphql'
+    idp:
+        audience: 'https://demo.masterytms.com/'
+        tokenEndpoint: 'http://id.internalprod.masterytms.com/auth/realms/demo.masterytms.com/protocol/openid-connect/token'
+    disableSentry: 'false'
+    logging:
+        env: internal-prod
+        pretty: false
+        level: 'debug'
+    newRelic:
+        labels: Customer:Mastery;Environment:Prod

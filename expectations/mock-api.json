@@ -1,0 +1,13 @@
+[
+    {
+        "httpRequest": {
+            "path": "/"
+        },
+        "httpResponse": {
+            "body": {
+                "status": 200,
+                "data": {}
+            }
+        }
+    }
+]

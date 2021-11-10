@@ -1,0 +1,287 @@
+import {InboundVoucher, VoucherIdentifiers} from '../../src/voucher/types'
+import {MoneyRecord, OutboundVoucher} from '../../src/generated-types/voucher'
+
+const money: MoneyRecord = {
+    amount: 10,
+    currencyCodeTerm: 'USD'
+}
+
+export const inboundVoucherEvent: InboundVoucher = {
+    EventType: 'Insert',
+    Id: '88ba1580-9890-4d90-a0e9-70667381428a',
+    InvoiceDistributionMethodId: null,
+    IsCreditMemoed: false,
+    IsSettled: false,
+    LoadId: 'f788177c-c518-43a0-8202-9f899098ac26',
+    OriginalAmountDue: null,
+    OriginalAmountDueDouble: 10,
+    PaymentMethodId: 'test-payment',
+    RemittanceInfo: {
+        RemittanceEmail: 'abc@gmail.com',
+        RemittanceGroupingId: 'groupId',
+        RemitToAddressId: 'addressId',
+        CarrierId: '0693cd65-cd76-4349-934d-54926e812c02'
+    },
+    RouteId: 'f788177c-c518-43a0-8202-9f899098ac26',
+    StatusId: 'Saved',
+    UpdatedBy: 'updated-by-test-id',
+    UpdatedOn: '2021-03-30T10:09:38.141Z',
+    VendorCreditMemo: {
+        Id: '7ae99db9-7f86-4007-8f92-c4fc84f2eb16',
+        Amount: null,
+        AmountDouble: 10,
+        CreatedBy: 'created-by-test-id',
+        CreatedOn: '122323243434343434',
+        Date: '2021-03-30T10:09:38.141Z',
+        IsProcessed: true,
+        Number: '1223',
+        UpdatedBy: 'updated-by-test-id',
+        UpdatedOn: '2021-03-30T10:09:38.141Z'
+    },
+    VendorId: '0693cd65-cd76-4349-934d-54926e812c02',
+    VendorInvoices: [
+        {
+            Id: 'test',
+            Amount: null,
+            AmountDouble: 10,
+            ApprovalDate: '2021-03-30T10:09:38.141Z',
+            Approver: 'test',
+            Comments: 'test',
+            CreatedBy: 'created-by-test-id',
+            CreatedOn: '2021-03-30T10:09:38.141Z',
+            Currency: 'USD',
+            DateReceived: '2021-03-30T10:09:38.141Z',
+            DateToPay: '2021-03-30T10:09:38.141Z',
+            InvoiceDate: '2021-03-30T10:09:38.141Z',
+            IsQuickpay: true,
+            LoadId: 'f788177c-c518-43a0-8202-9f899098ac26',
+            Processor: null,
+            RouteId: 'f788177c-c518-43a0-8202-9f899098ac26',
+            StatusId: 'created',
+            UpdatedBy: null,
+            UpdatedOn: null,
+            VendorId: '0693cd65-cd76-4349-934d-54926e812c02',
+            VendorInvoiceNumber: '1223',
+            ExternalId: null
+        }
+    ],
+    VoucherDate: '2021-03-30T10:09:38.141Z',
+    VoucherLineItems: [
+        {
+            AdvanceEid: null,
+            ChargeTypeId: 'Flat Rate',
+            CostPerUnit: null,
+            CostPerUnitDouble: 10,
+            CreatedBy: 'a17d4d76-39d5-40a5-ad25-78fe958c6063',
+            CreatedOn: '2021-03-30T10:09:38.141Z',
+            Id: 'de7c746b-0b6a-4f42-895d-e9d093aeb2a4',
+            IsCredit: false,
+            LoadId: '1095d3e7-7199-4eb6-a33a-d9e20faff54d',
+            RouteCode: '1000110067',
+            RouteId: '2a93d6e5-495b-4075-9857-f9f0f8fc6065',
+            RouteVendorTypeId: 'Carrier',
+            StatusId: 'Processed',
+            TotalCost: null,
+            TotalCostDouble: 10,
+            Units: null,
+            UnitsDouble: 10,
+            UpdatedBy: 'a17d4d76-39d5-40a5-ad25-78fe958c6063',
+            UpdatedOn: '2021-03-30T10:09:38.141Z',
+            VendorGlCode: '513000',
+            VendorId: 'f0c1e5bc-133d-44f5-94fc-cd06281e3b41',
+            VoucherHeaderEid: 4086
+        }
+    ],
+    VoucherNumber: '32323',
+    VoucherRootNumber: '454553',
+    BatchInfo: {
+        BatchId: 'batch',
+        BatchCreatedBy: 'created-by-test-id',
+        BatchCreatedOn: '2021-03-30T10:09:38.141Z',
+        BatchDescription: 'test batch',
+        BatchStatusId: 'pending',
+        BatchUpdatedBy: null,
+        BatchUpdatedOn: '2021-03-30T10:09:38.141Z',
+        IsFailedBatch: false,
+        ParentVoucherBatchId: null
+    },
+    CarrierPaymentTermId: 'test-payment-id',
+    CreatedBy: 'created-by-test-id',
+    CreatedOn: '232323232',
+    CurrencyId: 'USD',
+    CurrentAmountDue: null,
+    CurrentAmountDueDouble: 10,
+    DateSettled: null,
+    DiscountAmount: null,
+    DiscountAmountDouble: 10,
+    DiscountDateCalculation: null,
+    DiscountPercent: null,
+    DiscountPercentDouble: 5,
+    DueDate: '2021-03-30T10:09:38.141Z',
+    DueDateCalculation: null
+}
+
+export const outboundVoucherEvent: OutboundVoucher = {
+    id: '88ba1580-9890-4d90-a0e9-70667381428a',
+    eventType: 'VOUCHER_INSERTED',
+    statusTerm: 'Saved',
+    voucherDate: '2021-03-30',
+    dueDate: '2021-03-30',
+    vendorId: '0693cd65-cd76-4349-934d-54926e812c02',
+    voucherNumber: '32323',
+    routeId: 'f788177c-c518-43a0-8202-9f899098ac26',
+    routeNumber: '1000110067',
+    originalAmountDue: {...money},
+    currentAmountDue: {...money},
+    discountAmount: {...money},
+    voucherMethodTerm: null,
+    paymentTermsTerm: 'test-payment-id',
+    dueDateCalculation: null,
+    discountDateCalculation: null,
+    discountPercentage: 5,
+    paymentMethodTerm: 'test-payment',
+    isCreditMemoed: false,
+    creditMemoInformation: {
+        id: '7ae99db9-7f86-4007-8f92-c4fc84f2eb16',
+        creditMemoDateTime: 1617098978141,
+        amount: {...money},
+        creditMemoNumber: '1223',
+        createdBy: 'created-by-test-id',
+        createdDateTime: NaN,
+        lastUpdatedBy: 'updated-by-test-id',
+        lastUpdatedDateTime: 1617098978141
+    },
+    createdBy: 'created-by-test-id',
+    createdDateTime: NaN,
+    lastUpdatedBy: 'updated-by-test-id',
+    lastUpdatedDateTime: 1617098978141,
+    batchInfo: {
+        id: 'batch',
+        description: 'test batch',
+        statusTerm: 'pending',
+        isFailed: false,
+        parentBatchId: null,
+        createdBy: 'created-by-test-id',
+        createdDateTime: 1617098978141,
+        updatedBy: null,
+        updatedDateTime: 1617098978141
+    },
+    remittanceInformation: {
+        addressId: 'addressId',
+        carrierId: '0693cd65-cd76-4349-934d-54926e812c02',
+        carrierCode: 'TEST',
+        email: 'abc@gmail.com',
+        groupingTerm: 'groupId'
+    },
+    costLineItems: [
+        {
+            id: 'de7c746b-0b6a-4f42-895d-e9d093aeb2a4',
+            costTypeTerm: 'Flat Rate',
+            costPerUnit: {...money},
+            units: 10,
+            totalCost: {...money},
+            statusTerm: 'Processed',
+            isCredit: false,
+            routeVendorTypeTerm: 'Carrier',
+            createdBy: 'a17d4d76-39d5-40a5-ad25-78fe958c6063',
+            createdDateTime: 1617098978141,
+            lastUpdatedBy: 'a17d4d76-39d5-40a5-ad25-78fe958c6063',
+            lastUpdatedDateTime: 1617098978141
+        }
+    ],
+    vendorInvoices: [
+        {
+            id: 'test',
+            vendorInvoiceNumber: '1223',
+            invoiceDate: '2021-03-30',
+            amount: {...money},
+            statusTerm: 'created',
+            approvalDate: '2021-03-30',
+            isQuickpay: true,
+            comments: 'test',
+            approverEmailAddress: 'test',
+            createdBy: 'created-by-test-id',
+            createdDateTime: 1617098978141,
+            lastUpdatedBy: null,
+            lastUpdatedDateTime: null,
+            receivedDateTime: 1617098978141
+        }
+    ]
+}
+
+export const mockVoucherIdentifiers: VoucherIdentifiers = {
+    carrierIdentifier: {
+        carrierId: '0693cd65-cd76-4349-934d-54926e812c02',
+        carrierCode: 'TEST'
+    }
+}
+
+export const inboundUpdateVoucherEvent: InboundVoucher = {
+    EventType: 'Update',
+    Id: '88ba1580-9890-4d90-a0e9-70667381428a',
+    InvoiceDistributionMethodId: null,
+    IsCreditMemoed: false,
+    IsSettled: false,
+    LoadId: 'f788177c-c518-43a0-8202-9f899098ac26',
+    OriginalAmountDue: null,
+    OriginalAmountDueDouble: 10,
+    PaymentMethodId: 'test-payment',
+    RemittanceInfo: null,
+    RouteId: 'f788177c-c518-43a0-8202-9f899098ac26',
+    StatusId: 'Saved',
+    UpdatedBy: 'updated-by-test-id',
+    UpdatedOn: '2021-03-30T10:09:38.141Z',
+    VendorCreditMemo: null,
+    VendorId: '0693cd65-cd76-4349-934d-54926e812c02',
+    VendorInvoices: null,
+    VoucherDate: '2021-03-30T10:09:38.141Z',
+    VoucherLineItems: null,
+    VoucherNumber: '32323',
+    VoucherRootNumber: '454553',
+    BatchInfo: null,
+    CarrierPaymentTermId: 'test-payment-id',
+    CreatedBy: 'created-by-test-id',
+    CreatedOn: '232323232',
+    CurrencyId: 'USD',
+    CurrentAmountDue: null,
+    CurrentAmountDueDouble: 10,
+    DateSettled: null,
+    DiscountAmount: null,
+    DiscountAmountDouble: null,
+    DiscountDateCalculation: null,
+    DiscountPercent: null,
+    DiscountPercentDouble: 5,
+    DueDate: null,
+    DueDateCalculation: null
+}
+
+export const outboundUpdateVoucherEvent: OutboundVoucher = {
+    id: '88ba1580-9890-4d90-a0e9-70667381428a',
+    eventType: 'VOUCHER_UPDATED',
+    statusTerm: 'Saved',
+    voucherDate: '2021-03-30',
+    dueDate: null,
+    vendorId: '0693cd65-cd76-4349-934d-54926e812c02',
+    voucherNumber: '32323',
+    routeId: 'f788177c-c518-43a0-8202-9f899098ac26',
+    routeNumber: null,
+    originalAmountDue: {amount: 10, currencyCodeTerm: 'USD'},
+    currentAmountDue: {amount: 10, currencyCodeTerm: 'USD'},
+    discountAmount: null,
+    voucherMethodTerm: null,
+    paymentTermsTerm: 'test-payment-id',
+    dueDateCalculation: null,
+    discountDateCalculation: null,
+    discountPercentage: 5,
+    paymentMethodTerm: 'test-payment',
+    isCreditMemoed: false,
+    creditMemoInformation: null,
+    createdBy: 'created-by-test-id',
+    createdDateTime: NaN,
+    lastUpdatedBy: 'updated-by-test-id',
+    lastUpdatedDateTime: 1617098978141,
+    batchInfo: null,
+    remittanceInformation: null,
+    costLineItems: [],
+    vendorInvoices: []
+}

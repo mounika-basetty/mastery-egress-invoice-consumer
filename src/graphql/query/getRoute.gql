@@ -1,0 +1,6 @@
+query route($routeId: ID!) {
+    route(id: $routeId) {
+        id
+        code
+    }
+}

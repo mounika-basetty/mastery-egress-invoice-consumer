@@ -1,0 +1,29 @@
+replicaCount: 3
+
+namespace: ru100-test-mastery-egress
+
+kafkaNamespace: ru100-test-kafka
+
+image:
+    pullPolicy: IfNotPresent
+
+service:
+    environment: 'ru100-test'
+    kafka:
+        brokers: 'mastery-kafka-bootstrap.ru100-test-kafka.svc:9092'
+        registryEndpoint: 'http://mastery-schemaregistry.ru100-test-kafka.svc:80/api/ccompat'
+    outboundKafka:
+        topic: 'ru100-test-vouchers'
+        broker: 'ru100-test-egress-pnb52t.servicebus.windows.net:9093'
+    graphQL:
+        endpoint: 'https://graphql.test.ru100.mastermindtms.com/graphql'
+    idp:
+        audience: 'https://test.ru100.mastermindtms.com/'
+        tokenEndpoint: 'https://id.ru100nonprod.mastermindtms.com/auth/realms/test.ru100.mastermindtms.com/protocol/openid-connect/token'
+    disableSentry: 'false'
+    logging:
+        env: ru100-test
+        pretty: false
+        level: 'debug'
+    newRelic:
+        labels: Customer:Ruan;Environment:Test

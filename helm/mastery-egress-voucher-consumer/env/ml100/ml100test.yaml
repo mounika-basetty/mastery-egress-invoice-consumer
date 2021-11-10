@@ -1,0 +1,29 @@
+replicaCount: 3
+
+namespace: ml100-test-mastery-egress
+
+kafkaNamespace: ml100-test-kafka
+
+image:
+    pullPolicy: IfNotPresent
+
+service:
+    environment: 'ml100test'
+    kafka:
+        brokers: 'mastery-kafka-bootstrap.ml100-test-kafka.svc:9092'
+        registryEndpoint: 'http://mastery-schemaregistry.ml100-test-kafka.svc:80/api/ccompat'
+    outboundKafka:
+        topic: 'ml100-test-vouchers'
+        broker: 'ml100-test-egress-ay1b87.servicebus.windows.net:9093'
+    graphQL:
+        endpoint: 'https://graphql.test.ml100.mastermindtms.com/graphql'
+    idp:
+        audience: 'https://test.ml100.mastermindtms.com/'
+        tokenEndpoint: 'https://id.ml100nonprod.mastermindtms.com/auth/realms/test.ml100.mastermindtms.com/protocol/openid-connect/token'
+    disableSentry: 'false'
+    logging:
+        env: ml100-test
+        pretty: false
+        level: 'debug'
+    newRelic:
+        labels: Customer:MoLo;Environment:Test

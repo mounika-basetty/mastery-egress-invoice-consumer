@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Values.name }}
+      app.kubernetes.io/instance: {{ .Values.name }}
+  template:
+    metadata:
+      namespace: {{ .Values.namespace }}
+      labels:
+        app.kubernetes.io/name: {{ .Values.name }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Values.name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: ENVIRONMENT
+              value: {{ .Values.service.environment | quote }}
+            - name: OUTBOUND_VOUCHER_TOPIC
+              value: {{ .Values.service.outboundKafka.topic | quote }}
+            - name: KAFKA_CONSUMER_GROUP_ID
+              value: {{ .Values.service.kafka.consumerGroup | quote }}
+            - name: KAFKA_CONSUMER_CLIENT_ID
+              value: {{ .Values.service.kafka.consumerClient | quote }}
+            - name: PINO_PRETTY_PRINT
+              value: {{ .Values.service.logging.pretty | quote }}
+            - name: PINO_LOG_LEVEL
+              value: {{ .Values.service.logging.level | quote }}
+            - name: OUTBOUND_KAFKA_BROKER_LIST
+              value: {{ .Values.service.outboundKafka.broker | quote }}
+            - name: LACHESIS_KAFKA_SCHEMA_REGISTRY
+              value: {{ .Values.service.kafka.registryEndpoint | quote }}
+            - name: KAFKA_CLIENT_BROKERS
+              value: {{ .Values.service.kafka.brokers | quote }}
+            - name: DISABLE_SENTRY
+              value: {{ .Values.service.disableSentry | quote }}
+            - name: SENTRY_ENVIRONMENT
+              value: {{ .Values.service.environment | quote }}
+            - name: SENTRY_DSN
+              value: {{ .Values.service.sentry.dsn | quote }}
+            - name: NEW_RELIC_LICENSE_KEY
+              value: {{ .Values.service.newRelic.licenseKey | quote }}
+            - name: NEW_RELIC_APP_NAME
+              value: "{{ .Chart.Name }} ({{ .Values.service.logging.env }})"
+            - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
+              value: "true"
+            - name: NEW_RELIC_LABELS
+              value: {{ .Values.service.newRelic.labels | quote }}
+            - name: GRAPHQL_ENDPOINT
+              value: {{ .Values.service.graphQL.endpoint | quote }}
+            - name: IDP_AUDIENCE
+              value: {{ .Values.service.idp.audience | quote }}
+            - name: IDP_CLIENT_ID
+              value: {{ .Values.service.idp.clientId | quote }}
+            - name: IDP_CLIENT_SECRET
+              value: {{ .Values.service.idp.clientSecret | quote }}
+            - name: IDP_TOKEN_ENDPOINT
+              value: {{ .Values.service.idp.tokenEndpoint | quote }}
+            - name: OUTBOUND_KAFKA_PASSWORD
+              value: {{ .Values.service.outboundKafka.password | quote }}
+            - name: OUTBOUND_KAFKA_CLIENT_ID
+              value: {{ .Values.service.outboundKafka.producerClient | quote }}
+            - name: SHOULD_SKIP_ERRORS
+              value: {{ .Values.service.errors.shouldSkipErrors | quote }}

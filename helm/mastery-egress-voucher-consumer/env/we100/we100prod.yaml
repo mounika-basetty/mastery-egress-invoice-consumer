@@ -1,0 +1,29 @@
+replicaCount: 3
+
+namespace: we100-prod-mastery-egress
+
+kafkaNamespace: we100-prod-kafka
+
+image:
+    pullPolicy: IfNotPresent
+
+service:
+    environment: 'we100prod'
+    kafka:
+        brokers: 'mastery-kafka-bootstrap.we100-prod-kafka.svc:9092'
+        registryEndpoint: 'http://mastery-schemaregistry.we100-prod-kafka.svc:80/api/ccompat'
+    outboundKafka:
+        topic: 'we100-prod-vouchers'
+        broker: 'we100-prod-egress-v04o4r.servicebus.windows.net:9093'
+    graphQL:
+        endpoint: 'https://graphql.we100.mastermindtms.com/graphql'
+    idp:
+        audience: 'https://we100.mastermindtms.com/'
+        tokenEndpoint: 'https://id.we100prod.mastermindtms.com/auth/realms/we100.mastermindtms.com/protocol/openid-connect/token'
+    disableSentry: 'false'
+    logging:
+        env: we100-prod
+        pretty: false
+        level: 'debug'
+    newRelic:
+        labels: Customer:Werner;Environment:Production

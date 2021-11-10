@@ -1,0 +1,29 @@
+replicaCount: 2
+
+namespace: internal-dev-mastery-egress
+
+kafkaNamespace: internal-dev-kafka
+
+image:
+    pullPolicy: IfNotPresent
+
+service:
+    environment: 'internal-dev'
+    kafka:
+        brokers: 'mastery-kafka-bootstrap.internal-dev-kafka.svc:9092'
+        registryEndpoint: 'http://mastery-schemaregistry.internal-dev-kafka.svc:80/api/ccompat'
+    outboundKafka:
+        topic: 'internal-dev-vouchers'
+        broker: 'internal-dev-egress-85lcc7.servicebus.windows.net:9093'
+    graphQL:
+        endpoint: 'https://graphql.dev.internal.masterytms.com/graphql'
+    idp:
+        audience: 'https://dev.internal.masterytms.com/'
+        tokenEndpoint: 'https://id.internal.masterytms.com/auth/realms/dev.internal.masterytms.com/protocol/openid-connect/token'
+    disableSentry: 'false'
+    logging:
+        env: internal-dev
+        pretty: false
+        level: 'debug'
+    newRelic:
+        labels: Customer:Mastery;Environment:Dev

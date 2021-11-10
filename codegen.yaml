@@ -1,0 +1,20 @@
+overwrite: true
+schema: "./schema.graphql"
+documents: 'src/graphql/**'
+config:
+    noNamespaces: true
+    scalars:
+        ISO8601Date: string
+        Iso8601Date: string
+        ISO8601DateTime: string
+        IANATimezone: string
+        Json: any
+generates:
+    src/generated/graphql.ts:
+        plugins:
+            - typescript
+            - typescript-operations
+            - typescript-graphql-request
+        config:
+            rawRequest: true
+            maybeValue: T | null | undefined

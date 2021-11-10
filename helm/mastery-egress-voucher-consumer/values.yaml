@@ -1,0 +1,30 @@
+replicaCount: 3
+
+name: mastery-egress-voucher-consumer
+
+image:
+    repository: mastery-egress-voucher-consumer
+    tag: latest
+    pullPolicy: Never
+
+resources:
+    limits:
+        cpu: 500m
+        memory: 1024Mi
+    requests:
+        cpu: 250m
+        memory: 512Mi
+
+service:
+    logging:
+        pretty: false
+        level: debug
+    jwt: {}
+    kafka:
+        consumerGroup: mastery.egress.voucher.consumer.v1
+        consumerClient: mastery.egress.voucher.client.v1
+    outboundKafka:
+        producerClient: mastery.egress.voucher.producer.client
+    newRelic: {}
+    errors:
+        shouldSkipErrors: 'false'

@@ -1,0 +1,557 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "https://io.mastery.egress/v2/Voucher",
+    "type": "object",
+    "title": "OutboundVoucher",
+    "description": "The model for the voucher object(s) sent out of the egress.",
+    "definitions": {
+        "moneyRecord": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "title": "MoneyRecord",
+            "description": "This represents money record.",
+            "required": [
+                "amount",
+                "currencyCodeTerm"
+            ],
+            "properties": {
+                "amount": {
+                    "type": "number",
+                    "description": "This is where payment amount is indicated."
+                },
+                "currencyCodeTerm": {
+                    "type": "string",
+                    "$comment": "Data Dictionary: currency",
+                    "description": "This is where payment currency is indicated (IE: USD, CAN, etc.)."
+                }
+            }
+        }
+    },
+    "required": [
+        "id",
+        "eventType",
+        "vendorId",
+        "routeId"
+    ],
+    "properties": {
+        "id": {
+            "$id": "https://io.mastery.egress/v2/Voucher/id",
+            "type": "string",
+            "description": "uniqueId of voucher."
+        },
+        "eventType": {
+            "$id": "https://io.mastery.egress/v2/Voucher/eventType",
+            "type": "string",
+            "description": "Outbound event types for voucher."
+        },
+        "statusTerm": {
+            "$id": "https://io.mastery.egress/v2/Voucher/statusTerm",
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "This is where the voucher status will be displayed in the TMS."
+        },
+        "voucherDate": {
+            "$id": "https://io.mastery.egress/v2/Voucher/voucherDate",
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "This is where the voucher date will be displayed."
+        },
+        "dueDate": {
+            "$id": "https://io.mastery.egress/v2/Voucher/dueDate",
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "This is where the voucher due date will be displayed."
+        },
+        "vendorId": {
+            "$id": "https://io.mastery.egress/v2/Voucher/vendorId",
+            "type": "string",
+            "description": "The internal id that references the vendor."
+        },
+        "voucherNumber": {
+            "$id": "https://io.mastery.egress/v2/Voucher/voucherNumber",
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "This is where the voucher number will be displayed."
+        },
+        "routeId": {
+            "$id": "https://io.mastery.egress/v2/Voucher/routeId",
+            "type": "string",
+            "description": "The internal id that references the route."
+        },
+        "routeNumber": {
+            "$id": "https://io.mastery.egress/v2/Voucher/routeNumber",
+            "type": [
+                "string",
+                "null"
+            ],
+            "minLength": 1,
+            "description": "The internally-generated friendly number that references the route."
+        },
+        "originalAmountDue": {
+            "$ref": "#/definitions/moneyRecord"
+        },
+        "currentAmountDue": {
+            "$ref": "#/definitions/moneyRecord"
+        },
+        "discountAmount": {
+            "$ref": "#/definitions/moneyRecord"
+        },
+        "voucherMethodTerm": {
+            "$id": "https://io.mastery.egress/v2/Voucher/voucherMethodTerm",
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "This is where voucher method term will be displayed."
+        },
+        "paymentTermsTerm": {
+            "$id": "https://io.mastery.egress/v2/Voucher/paymentTermsTerm",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "dueDateCalculation": {
+            "$id": "https://io.mastery.egress/v2/Voucher/dueDateCalculation",
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "This is where due date calculation will be displayed."
+        },
+        "discountDateCalculation": {
+            "$id": "https://io.mastery.egress/v2/Voucher/discountDateCalculation",
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "This is where discount date calculation will be displayed."
+        },
+        "discountPercentage": {
+            "$id": "https://io.mastery.egress/v2/Voucher/discountPercentage",
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "This is where discount percentage will be displayed."
+        },
+        "paymentMethodTerm": {
+            "$id": "https://io.mastery.egress/v2/Voucher/paymentMethodTerm",
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "This is where payment method term will be displayed."
+        },
+        "isCreditMemoed": {
+            "$id": "https://io.mastery.egress/v2/Voucher/isCreditMemoed",
+            "type": [
+                "boolean",
+                "null"
+            ]
+        },
+        "creditMemoInformation": {
+            "$id": "https://io.mastery.egress/v2/Voucher/vendorCreditMemo",
+            "type": [
+                "object",
+                "null"
+            ],
+            "title": "VendorCreditMemo",
+            "description": "This is where credit memo information will be displayed.",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "A unique Vendor credit memo Id"
+                },
+                "creditMemoDateTime": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "amount": {
+                    "$ref": "#/definitions/moneyRecord"
+                },
+                "creditMemoNumber": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "createdBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "This represents the id of user who created this record."
+                },
+                "createdDateTime": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "description": "This represents the time when the record was created."
+                },
+                "lastUpdatedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "This represents the id of user who updated this record."
+                },
+                "lastUpdatedDateTime": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "description": "This represents the time when the record was updated."
+                }
+            }
+        },
+        "createdBy": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "This represents the id of user who created this record."
+        },
+        "createdDateTime": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "This represents the time when the record was created."
+        },
+        "lastUpdatedBy": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "This represents the id of user who updated this record."
+        },
+        "lastUpdatedDateTime": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "This represents the time when the record was updated."
+        },
+        "batchInfo": {
+            "$id": "https://io.mastery.egress/v2/Voucher/batchInfo",
+            "type": [
+                "object",
+                "null"
+            ],
+            "title": "BatchInfo",
+            "description": "This is where batch information will be displayed.",
+            "properties": {
+                "id": {
+                    "type":  [
+                        "string",
+                        "null"
+                    ],
+                    "description": "A unique batch Id"
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "This is where batch details will be displayed."
+                },
+                "statusTerm": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "This is where batch status term will be displayed."
+                },
+                "isFailed": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "parentBatchId": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "This is where parent batch id will be displayed."
+                },
+                "createdBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "This represents the id of user who created this record."
+                },
+                "createdDateTime": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "description": "This represents the time when the record was created."
+                },
+                "lastUpdatedBy": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "This represents the id of user who updated this record."
+                },
+                "lastUpdatedDateTime": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "description": "This represents the time when the record was updated."
+                }
+            }
+        },
+        "remittanceInformation": {
+            "$id": "https://io.mastery.egress/v2/Voucher/remittanceInformation",
+            "type": [
+                "object",
+                "null"
+            ],
+            "title": "RemittanceInformation",
+            "description": "This is where remittance information will be displayed.",
+            "properties": {
+                "addressId": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "description": "The internal id that references the address."
+                },
+                "carrierId": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "description": "The internal id that references the carrier."
+                },
+                "carrierCode": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "minLength": 1,
+                    "description": "The external code that references the carrier."
+                },
+                "email": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "email"
+                },
+                "groupingTerm": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "costLineItems": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "description": "This is where cost line items will be displayed.",
+            "items": {
+                "$id": "https://io.mastery.egress/v2/Voucher/costLineItem",
+                "type": "object",
+                "title": "CostLineItem",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "A unique CostLineItem Id"
+                    },
+                    "costTypeTerm": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "This is where the cost type term will be displayed."
+                    },
+                    "costPerUnit": {
+                        "$ref": "#/definitions/moneyRecord"
+                    },
+                    "units": {
+                        "type": [
+                            "number",
+                            "null"
+                        ]
+                    },
+                    "totalCost": {
+                        "$ref": "#/definitions/moneyRecord"
+                    },
+                    "statusTerm": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "This is where the cost line item status term will be displayed."
+                    },
+                    "isCredit": {
+                        "type": [
+                            "boolean",
+                            "null"
+                        ]
+                    },
+                    "routeVendorTypeTerm": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "minLength": 1,
+                        "description": "This is where the routeVendorTypeTerm Type will be displayed."
+                    },
+                    "createdBy": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "This represents the id of user who created this record."
+                    },
+                    "createdDateTime": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "description": "This represents the time when the record was created."
+                    },
+                    "lastUpdatedBy": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "This represents the id of user who updated this record."
+                    },
+                    "lastUpdatedDateTime": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "description": "This represents the time when the record was updated."
+                    }
+                }
+            }
+        },
+        "vendorInvoices": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "description": "This is where vendor invoices will be displayed.",
+            "items": {
+                "$id": "https://io.mastery.egress/v2/Voucher/vendorInvoices",
+                "type": "object",
+                "title": "VendorInvoices",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "A unique vendor invoice Id"
+                    },
+                    "vendorInvoiceNumber": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "This is where the vendor invoice number will be displayed."
+                    },
+                    "invoiceDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "amount": {
+                        "$ref": "#/definitions/moneyRecord"
+                    },
+                    "statusTerm": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "This is where the vendor invoice status will be displayed."
+                    },
+                    "approvalDate": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "isQuickpay": {
+                        "type": [
+                            "boolean",
+                            "null"
+                        ]
+                    },
+                    "comments": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "approverEmailAddress": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
+                    },
+                    "createdBy": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "This represents the id of user who created this record."
+                    },
+                    "createdDateTime": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "description": "This represents the time when the record was created."
+                    },
+                    "lastUpdatedBy": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "description": "This represents the id of user who updated this record."
+                    },
+                    "lastUpdatedDateTime": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "description": "This represents the time when the record was updated."
+                    },
+                    "receivedDateTime": {
+                        "type": [
+                            "number",
+                            "null"
+                        ],
+                        "description": "This is where the vendor invoice received date time will be displayed."
+                    }
+                }
+            }
+        }
+    }
+}

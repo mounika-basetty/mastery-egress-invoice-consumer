@@ -1,0 +1,29 @@
+replicaCount: 3
+
+namespace: we100-test-mastery-egress
+
+kafkaNamespace: we100-test-kafka
+
+image:
+    pullPolicy: IfNotPresent
+
+service:
+    environment: 'we100test'
+    kafka:
+        brokers: 'mastery-kafka-bootstrap.we100-test-kafka.svc:9092'
+        registryEndpoint: 'http://mastery-schemaregistry.we100-test-kafka.svc:80/api/ccompat'
+    outboundKafka:
+        topic: 'we100-test-vouchers'
+        broker: 'we100-test-egress-qe7r9r.servicebus.windows.net:9093'
+    graphQL:
+        endpoint: 'https://graphql.test.we100.mastermindtms.com/graphql'
+    idp:
+        audience: 'https://test.we100.mastermindtms.com/'
+        tokenEndpoint: 'https://id.we100nonprod.mastermindtms.com/auth/realms/test.we100.mastermindtms.com/protocol/openid-connect/token'
+    disableSentry: 'false'
+    logging:
+        env: we100-test
+        pretty: false
+        level: 'debug'
+    newRelic:
+        labels: Customer:Werner;Environment:Test

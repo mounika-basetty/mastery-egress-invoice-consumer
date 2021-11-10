@@ -1,0 +1,29 @@
+replicaCount: 3
+
+namespace: tb100-prod-mastery-egress
+
+kafkaNamespace: tb100-prod-kafka
+
+image:
+    pullPolicy: IfNotPresent
+
+service:
+    environment: 'tb100prod'
+    kafka:
+        brokers: 'mastery-kafka-bootstrap.tb100-prod-kafka.svc:9092'
+        registryEndpoint: 'http://mastery-schemaregistry.tb100-prod-kafka.svc:80/api/ccompat'
+    outboundKafka:
+        topic: 'tb100-prod-vouchers'
+        broker: 'tb100-prod-egress-1g3cvi.servicebus.windows.net:9093'
+    graphQL:
+        endpoint: 'https://graphql.tb100.mastermindtms.com/graphql'
+    idp:
+        audience: 'https://tb100.mastermindtms.com/'
+        tokenEndpoint: 'https://id.tb100prod.mastermindtms.com/auth/realms/tb100.mastermindtms.com/protocol/openid-connect/token'
+    disableSentry: 'false'
+    logging:
+        env: tb100-prod
+        pretty: false
+        level: 'debug'
+    newRelic:
+        labels: Customer:TrailerBridge;Environment:Prod

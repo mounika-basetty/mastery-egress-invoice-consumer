@@ -1,0 +1,29 @@
+replicaCount: 2
+
+namespace: internal-test-mastery-egress
+
+kafkaNamespace: internal-test-kafka
+
+image:
+    pullPolicy: IfNotPresent
+
+service:
+    environment: 'internaltest'
+    kafka:
+        brokers: 'mastery-kafka-bootstrap.internal-test-kafka.svc:9092'
+        registryEndpoint: 'http://mastery-schemaregistry.internal-test-kafka.svc:80/api/ccompat'
+    outboundKafka:
+        topic: 'internal-test-vouchers'
+        broker: 'internal-test-egress-tzy973.servicebus.windows.net:9093'
+    graphQL:
+        endpoint: 'https://graphql.test.internal.masterytms.com/graphql'
+    idp:
+        audience: 'https://test.internal.masterytms.com/'
+        tokenEndpoint: 'https://id.internal.masterytms.com/auth/realms/test.internal.masterytms.com/protocol/openid-connect/token'
+    disableSentry: 'false'
+    logging:
+        env: internal-test
+        pretty: false
+        level: 'debug'
+    newRelic:
+        labels: Customer:Mastery;Environment:Test

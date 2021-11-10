@@ -1,0 +1,15 @@
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  labels:
+    strimzi.io/cluster: mastery
+  name: [ENTITY_NAME].v1
+  namespace: kafka
+spec:
+  config:
+    # 31536000000 = 1 year | 2592000000 = 30days | 604800000 = 7 days
+    retention.ms: $TOPIC_RETENTION_POLICY
+  partitions: 12
+  replicas: 3
+  topicName: $TOPIC_PREFIX.[ENTITY_NAME].v1
+# from k8s context (telepresence manual or in deployment script), run kubectl apply -f topics.yaml

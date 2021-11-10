@@ -1,0 +1,6 @@
+query carrier($carrierId: ID!) {
+    carrier(id: $carrierId) {
+        id
+        code
+    }
+}

@@ -1,0 +1,5 @@
+{
+    "suites": "test/**/*.ts",
+    "coverage": ["src/**/*.ts", "!src/app.ts"],
+    "reporters": ["runner", "jsoncoverage", "lcov"]
+}

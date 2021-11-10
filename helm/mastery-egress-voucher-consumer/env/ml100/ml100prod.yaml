@@ -1,0 +1,29 @@
+replicaCount: 3
+
+namespace: ml100-prod-mastery-egress
+
+kafkaNamespace: ml100-prod-kafka
+
+image:
+    pullPolicy: IfNotPresent
+
+service:
+    environment: 'ml100prod'
+    kafka:
+        brokers: 'mastery-kafka-bootstrap.ml100-prod-kafka.svc:9092'
+        registryEndpoint: 'http://mastery-schemaregistry.ml100-prod-kafka.svc:80/api/ccompat'
+    outboundKafka:
+        topic: 'ml100-prod-vouchers'
+        broker: 'ml100-prod-egress-ieutx5.servicebus.windows.net:9093'
+    graphQL:
+        endpoint: 'https://graphql.ml100.mastermindtms.com/graphql'
+    idp:
+        audience: 'https://ml100.mastermindtms.com/'
+        tokenEndpoint: 'https://id.ml100prod.mastermindtms.com/auth/realms/ml100.mastermindtms.com/protocol/openid-connect/token'
+    disableSentry: 'false'
+    logging:
+        env: ml100-prod
+        pretty: false
+        level: 'debug'
+    newRelic:
+        labels: Customer:MoLo;Environment:Production
